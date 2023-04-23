@@ -1,7 +1,12 @@
 <?php 
 
-if(isset($_GET('PasswordLength')))
-    echo ""
+require_once __DIR__ . '/partials/functions.php';
+
+if(isset($_GET['PasswordLength']) &&  $_GET['PasswordLength'] > 4){
+
+   $ActualPassword = CreatePassword($_GET['PasswordLength']);
+}
+   
 ?>
 
 
@@ -25,6 +30,22 @@ if(isset($_GET('PasswordLength')))
             <button type="submit">Create</button>
         </div>
     </form>
+
+    <?php 
+     if($ActualPassword != ""){
+
+        ?>
+
+        <h2>Password Created</h2>
+        <h3><?= $_GET['PasswordLength'] ?> Characters </h3>
+
+        <div><?= $ActualPassword ?></div>
+
+        <?php
+
+     }
+    ?>
+
     </div>
 </body>
 </html>
